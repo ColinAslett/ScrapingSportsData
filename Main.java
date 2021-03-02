@@ -6,7 +6,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Main {
-	//Data Place: https://www.sports-reference.com/cbb/boxscores/index.cgi?month=2&day=18&year=2021
+	//https://www.sports-reference.com/
+	//BASKETBALL LINKS
 	String link = "https://www.sports-reference.com/cbb/boxscores/index.cgi?month=2&day=1&year=2021";
 	String link_part_1 = "https://www.sports-reference.com/cbb/boxscores/index.cgi?month=";
 	String link_part_2 = "&day=";
@@ -14,19 +15,17 @@ public class Main {
 	ArrayList<Data> Data_List = new ArrayList<>();
 	public Main() throws Exception{
 		System.setProperty("http.agent", "Chrome");
-		//System.out.println("\"John\"");
-		for(int i = 1;i < 20;i++){
+		for(int i = 1;i < 32;i++){
 			link = link_part_1 + "2" + link_part_2 + Integer.toString(i) + link_part_3 + "2021";
-			test();
-			//System.out.println(Data_List.size());
+			NCAA_BASKETBALL_SCRAPER();
+			System.out.println(Data_List.size());
 		}
-		//test();
 		System.out.println("WINNER,LOSER,WINNER_SCORE,LOSER_SCORE");
 		for(int i = 0;i < Data_List.size();i++){
 			System.out.println(Data_List.get(i).winner + "," + Data_List.get(i).loser + "," + Data_List.get(i).winnerScore + "," + Data_List.get(i).loserScore);
 		}
 	}
-	private void test() throws Exception{
+	private void NCAA_BASKETBALL_SCRAPER() throws Exception{
 		URL url = new URL(link);
 		InputStream is = url.openStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
